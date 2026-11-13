@@ -1,110 +1,292 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es‑CO">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Julikitty ‑ Tienda Hello Kitty</title>
+<meta charset="UTF‑8">
+<meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+<title>Julikitty 🎀 Maquillaje Hello Kitty</title>
 <style>
-* {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-}
-body {
-background-color: #fff7fb;
-color: #333;
-}
-h1, h2 {
-text-align: center;
-padding: 20px;
-}
-nav {
-background-color: #ffb8d6;
-padding: 12px;
-}
-nav a {
-margin: 0 12px;
-text-decoration: none;
-color: #222;
-font-weight: bold;
-}
-section {
-padding: 30px 15px;
-max-width: 1200px;
-margin: 0 auto;
-}
-.product-container {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-gap: 20px;
-}
-.card {
-background: white;
-border-radius: 16px;
-padding: 15px;
-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-text-align: center;
-}
-.card img {
-width: 100%;
-height: 220px;
-object-fit: cover;
-border-radius: 12px;
-}
-.price {
-font-weight: bold;
-color: #e84a8a;
-margin-top: 10px;
-font-size: 18px;
-}
-button {
-background-color: #e84a8a;
-color: white;
-border: none;
-padding: 10px 18px;
-border-radius: 8px;
-margin-top: 12px;
-cursor: pointer;
-font-weight: bold;
-}
-button:hover {
-background-color: #c93972;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Arial',sans-serif;scroll-behavior:smooth;}
+:root{--rosa-claro:#ffe4ec;--rosa-principal:#ff9fc8;--rosa-fuerte:#ff5c9e;--blanco:#fff8fb;--rosa-boton:#ff3f8b;}
+body{background-color:var(--rosa-claro);color:#333;}
+
+/* MOÑOS FLOTANTES */
+@keyframes flotar {0%{transform:translateY(0px);}50%{transform:translateY(12px);}100%{transform:translateY(0px);}}
+.moño{position:fixed;font-size:2rem;z-index:0;opacity:0.7;animation:flotar 3.2s ease-in-out infinite;}
+.moño1{top:80px;left:20px;animation-delay:0s;}
+.moño2{top:250px;right:30px;animation-delay:0.6s;}
+.moño3{bottom:120px;left:40px;animation-delay:1.2s;}
+.moño4{bottom:300px;right:20px;animation-delay:1.8s;}
+.moño5{top:550px;left:15px;font-size:1.6rem;animation-delay:2.4s;}
+
+/* HEADER */
+header{background:var(--rosa-fuerte);color:white;padding:22px;text-align:center;position:sticky;top:0;z-index:10;box-shadow:0 4px 10px #ff7bb8;}
+.logo{font-size:30px;font-weight:bold;}
+.logo span{color:#fff799;}
+
+/* MENU DESPLEGABLE */
+nav{background:var(--rosa-principal);padding:14px;text-align:center;}
+#menuBtn{background:white;border:none;padding:11px 18px;border-radius:22px;font-size:17px;cursor:pointer;font-weight:bold;color:var(--rosa-fuerte);box-shadow:0 3px 8px #ff7bb8;}
+.menuOpciones{display:none;flex-direction:column;gap:10px;margin-top:12px;}
+.menuOpciones.active{display:flex;}
+.menuOpciones a{color:white;text-decoration:none;font-weight:bold;padding:10px;border-radius:14px;transition:0.3s;}
+.menuOpciones a:hover{background:white;color:var(--rosa-fuerte);transform:scale(1.05);}
+
+/* SECCIONES */
+section{padding:50px 22px;max-width:1250px;margin:0 auto;position:relative;z-index:1;}
+h2{text-align:center;color:var(--rosa-fuerte);margin-bottom:35px;font-size:28px;}
+
+/* SECCIÓN NOSOTRAS */
+#nosotras{background:#fff8fb;border-radius:28px;padding:35px;border:3px solid var(--rosa-principal);box-shadow:0 6px 16px #ffb8d2;}
+.textoNosotras{text-align:center;font-size:16px;line-height:1.7;color:#444;max-width:1000px;margin:0 auto;}
+.fraseDestacada{font-size:20px;font-weight:bold;color:var(--rosa-fuerte);margin:20px 0;}
+
+/* TARJETAS PRODUCTOS + HOVER (QUITAMOS SOLO EL ESTILO DE IMAGEN) */
+.contenedorProductos{display:grid;grid-template-columns:repeat(auto‑fit,minmax(270px,1fr));gap:28px;}
+.tarjeta{background:var(--blanco);border-radius:26px;padding:22px;box-shadow:0 5px 14px #ffb8d2;text-align:center;border:3px solid var(--rosa-principal);transition:0.3s;}
+.tarjeta:hover{transform:translateY(-8px);box-shadow:0 10px 22px #ff99c8;}
+.tarjeta h3{color:var(--rosa-fuerte);margin-bottom:10px;}
+.precio{font-weight:bold;font-size:20px;color:#d62878;margin:12px 0;}
+.descripcion{font-size:14px;line-height:1.6;color:#555;margin-bottom:18px;}
+
+/* BOTÓN COMPRAR AHORA */
+.botonComprar{background-color:var(--rosa-boton);color:white;border:none;padding:12px 18px;border-radius:24px;font-weight:bold;cursor:pointer;font-size:15px;transition:0.3s;}
+.botonComprar:hover{background-color:#e82e78;transform:scale(1.08);}
+
+/* TARJETAS RESEÑAS ✅ MANTENIDO */
+.contenedorResenas{display:grid;grid-template-columns:repeat(auto‑fit,minmax(250px,1fr));gap:25px;}
+.tarjetaResena{background:#fff8fb;border-radius:24px;padding:20px;border:2px solid #ffb8d2;box-shadow:0 4px 10px #ffd7e5;text-align:center;}
+.estrellas{color:#ffb400;font-size:18px;margin-bottom:8px;}
+.nombreResena{font-weight:bold;color:#ff5c9e;margin-bottom:6px;}
+.textoResena{font-size:14px;color:#444;line-height:1.5;}
+
+footer{background:var(--rosa-fuerte);color:white;text-align:center;padding:24px;margin-top:50px;font-size:15px;}
 </style>
 </head>
 <body>
+<!-- MOÑOS -->
+<div class="moño moño1">🎀</div>
+<div class="moño moño2">🎀</div>
+<div class="moño moño3">🎀</div>
+<div class="moño moño4">🎀</div>
+<div class="moño moño5">🎀</div>
+
+<header>
+<div class="logo">🎀 JULIKITTY <span>Hello Kitty</span></div>
+</header>
+
 <nav>
-<a href="#inicio">Inicio</a>
-<a href="#productos">Productos</a>
-<a href="#contacto">Contacto</a>
+<button id="menuBtn">📋 MENÚ</button>
+<div class="menuOpciones" id="menu">
+<a href="#nosotras">💖 Nosotras · Acerca de Julikitty</a>
+<a href="#skincare">🧴 Skincare y productos para la cara</a>
+<a href="#maquillaje">💄 Maquillaje facial</a>
+<a href="#uñas">💅 Uñas</a>
+<a href="#cabello">🫧 Cabello</a>
+<a href="#resenas">⭐ Reseñas de Clientes</a>
+</div>
 </nav>
-<h1>🎀 Tienda Julikitty</h1>
-<section id="productos">
-<h2>✨ Nuestros Productos</h2>
-<div class="product-container">
-<div class="card">
-<img src="https://via.placeholder.com/400x220?text=Hello+Kitty+Peluche" alt="Peluche Hello Kitty">
-<h3>Peluche Hello Kitty</h3>
-<p class="price">$35.000 COP</p>
-<button>Comprar</button>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const menu = document.getElementById('menu');
+menuBtn.addEventListener('click',()=>menu.classList.toggle('active'));
+
+// Función botón Comprar Ahora
+function comprar(nombreProducto){
+  alert(`🎀 ¡Quieres comprar: ${nombreProducto}! ✨ Agregado al carrito Julikitty 🛷`);
+}
+</script>
+
+<!-- SECCIÓN 💖 NOSOTRAS · ACERCA DE JULIKITTY ✅ MANTENIDA -->
+<section id="nosotras">
+<h2>💖 Nosotras · Acerca de Julikitty</h2>
+<div class="textoNosotras">
+<p>🎀 La idea de crear Julikitty nació de un sueño: unir la ternura de Hello Kitty con el mundo del maquillaje, para que cada persona se sienta hermosa, tierna y llena de brillo al usar productos pensados para cuidar su belleza.</p>
+<p class="fraseDestacada">✨ “La belleza no necesita ser perfecta, solo necesita ser tú” ✨</p>
+<p>Queríamos que cada envase fuera mágico: lleno de moños, color rosa, el logo Julikitty y el encanto de Hello Kitty, haciendo que el momento de maquillarse o cuidar la piel se convirtiera en un instante especial, lleno de alegría y confianza.</p>
+<p>Cada producto fue creado pensando en vitaminas y cuidados para la piel, uñas y cabello; queremos que te veas linda por fuera y te sientas bien por dentro. Julikitty es más que una tienda de maquillaje, es un espacio para todas las personas que aman lo tierno, lo brillante y quieren brillar con su propia luz 🥰</p>
 </div>
-<div class="card">
-<img src="https://via.placeholder.com/400x220?text=Hello+Kitty+Mug" alt="Taza Hello Kitty">
-<h3>Taza Hello Kitty</h3>
-<p class="price">$18.000 COP</p>
-<button>Comprar</button>
+</section>
+
+<!-- SECCIÓN 1 SKINCARE -->
+<section id="skincare">
+<h2>🧴 Skincare y productos para la cara</h2>
+<div class="contenedorProductos">
+<div class="tarjeta">
+<h3>Crema hidratante Julikitty</h3>
+<p class="precio">$28.900 COP</p>
+<p class="descripcion">Envase con logo Hello Kitty. Contiene vitamina E y ácido hialurónico, hidrata profundamente la piel, reduce la resequedad y deja la cara suave para preparar la piel antes de maquillarse.</p>
+<button class="botonComprar" onclick="comprar('Crema hidratante Julikitty')">🛒 Comprar Ahora</button>
 </div>
-<div class="card">
-<img src="https://via.placeholder.com/400x220?text=Hello+Kitty+Llavero" alt="Llavero Hello Kitty">
-<h3>Llavero Hello Kitty</h3>
-<p class="price">$12.000 COP</p>
-<button>Comprar</button>
+<div class="tarjeta">
+<h3>Tónico facial Julikitty</h3>
+<p class="precio">$19.500 COP</p>
+<p class="descripcion">Envase rosa con moño y logo Hello Kitty. Con vitamina B5, limpia los restos de suciedad, cierra poros y equilibra el pH de la piel.</p>
+<button class="botonComprar" onclick="comprar('Tónico facial Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Serum iluminador Julikitty</h3>
+<p class="precio">$42.000 COP</p>
+<p class="descripcion">Frasco decorado Hello Kitty. Vitamina C, ilumina la piel, quita manchas y le da un brillo natural para que el maquillaje quede mucho mejor.</p>
+<button class="botonComprar" onclick="comprar('Serum iluminador Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Desmaquillante Julikitty</h3>
+<p class="precio">$25.700 COP</p>
+<p class="descripcion">Frasco rosa con moño Julikitty + Hello Kitty, vitamina B12, elimina maquillaje resistente, cuida la zona de ojos sin irritar la piel.</p>
+<button class="botonComprar" onclick="comprar('Desmaquillante Julikitty')">🛒 Comprar Ahora</button>
 </div>
 </div>
 </section>
-<section id="contacto">
-<h2>💖 Contáctanos</h2>
-<p style="text-align:center; padding:15px;">Correo: julikitty‑tienda@ejemplo.com</p>
+
+<!-- SECCIÓN 2 MAQUILLAJE FACIAL -->
+<section id="maquillaje">
+<h2>💄 Maquillaje facial</h2>
+<div class="contenedorProductos">
+<div class="tarjeta">
+<h3>Base de maquillaje Julikitty</h3>
+<p class="precio">$35.600 COP</p>
+<p class="descripcion">Envase Hello Kitty. Cobertura media, contiene vitamina E, unifica el tono facial, no se cuartea y deja un acabado aterciopelado.</p>
+<button class="botonComprar" onclick="comprar('Base de maquillaje Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Polvo fijador Julikitty</h3>
+<p class="precio">$24.300 COP</p>
+<p class="descripcion">Polvera rosa con moño y logo Hello Kitty. Fija el maquillaje por horas, matifica brillos y evita que se derrita el maquillaje en el rostro.</p>
+<button class="botonComprar" onclick="comprar('Polvo fijador Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Rubor rosa Julikitty</h3>
+<p class="precio">$21.000 COP</p>
+<p class="descripcion">Caja decorada Hello Kitty. Tonos rosa pastel, le da un rubor natural a las mejillas y da una apariencia tierna y fresca.</p>
+<button class="botonComprar" onclick="comprar('Rubor rosa Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Corrector Julikitty</h3>
+<p class="precio">$27.800 COP</p>
+<p class="descripcion">Tubito Hello Kitty. Oculta ojeras y manchas, contiene vitamina K, ligero y no se agrieta bajo los ojos.</p>
+<button class="botonComprar" onclick="comprar('Corrector Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Paleta de sombras Julikitty</h3>
+<p class="precio">$48.500 COP</p>
+<p class="descripcion">Paleta rosa con moño y logo Julikitty Hello Kitty, 12 tonos rosas y dorados, enriquecida con vitamina A para cuidar la piel de los párpados, ideal para maquillaje diario o fiestas.</p>
+<button class="botonComprar" onclick="comprar('Paleta de sombras Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Delineador negro Julikitty</h3>
+<p class="precio">$22.700 COP</p>
+<p class="descripcion">Delineador líquido en envase Hello Kitty, fórmula con vitamina B3, secado rápido, resistente al agua, trazo preciso para definir la mirada.</p>
+<button class="botonComprar" onclick="comprar('Delineador negro Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Labial matte rosa Julikitty</h3>
+<p class="precio">$31.200 COP</p>
+<p class="descripcion">Barra labial rosa con logo Julikitty Hello Kitty, contiene vitamina F, hidrata los labios mientras da un color rosa intenso y duradero sin resecar.</p>
+<button class="botonComprar" onclick="comprar('Labial matte rosa Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Máscara de pestañas Julikitty</h3>
+<p class="precio">$33.400 COP</p>
+<p class="descripcion">Envase rosa Julikitty Hello Kitty, vitamina B7, alarga y da volumen a las pestañas, resistente al desvanecimiento, no deja manchas en los ojos.</p>
+<button class="botonComprar" onclick="comprar('Máscara de pestañas Julikitty')">🛒 Comprar Ahora</button>
+</div>
+</div>
 </section>
+
+<!-- SECCIÓN 3 UÑAS -->
+<section id="uñas">
+<h2>💅 Uñas y esmaltes</h2>
+<div class="contenedorProductos">
+<div class="tarjeta">
+<h3>Esmalte rosa pastel Julikitty</h3>
+<p class="precio">$12.900 COP</p>
+<p class="descripcion">Frasco con logo Hello Kitty. Contiene vitamina A, fortalece la uña, secado rápido, color rosa suave ideal para uso diario.</p>
+<button class="botonComprar" onclick="comprar('Esmalte rosa pastel Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Esmalte brillante Julikitty</h3>
+<p class="precio">$14.200 COP</p>
+<p class="descripcion">Frasco decorado Hello Kitty. Brillo plateado, vitamina B7, protege la uña y queda perfecto para ocasiones especiales.</p>
+<button class="botonComprar" onclick="comprar('Esmalte brillante Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Esmalte rojo dulce Julikitty</h3>
+<p class="precio">$15.100 COP</p>
+<p class="descripcion">Frasco rosa moño Julikitty Hello Kitty, vitamina D, color rojo suave elegante, acabado liso y duradero.</p>
+<button class="botonComprar" onclick="comprar('Esmalte rojo dulce Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Esmalte lila pastel Julikitty</h3>
+<p class="precio">$13.800 COP</p>
+<p class="descripcion">Frasco decorado Hello Kitty, vitamina B5, protege la uña, tono lila tierno para salidas y reuniones.</p>
+<button class="botonComprar" onclick="comprar('Esmalte lila pastel Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Uñas postizas Julikitty</h3>
+<p class="precio">$36.500 COP</p>
+<p class="descripcion">Caja rosa con moño Hello Kitty. Uñas largas decoradas con moños, fáciles de pegar, acabado muy realista.</p>
+<button class="botonComprar" onclick="comprar('Uñas postizas Julikitty')">🛒 Comprar Ahora</button>
+</div>
+</div>
+</section>
+
+<!-- SECCIÓN 4 CABELLO -->
+<section id="cabello">
+<h2>🫧 Cabello</h2>
+<div class="contenedorProductos">
+<div class="tarjeta">
+<h3>Cepillo peinador Julikitty</h3>
+<p class="precio">$32.000 COP</p>
+<p class="descripcion">Cepillo rosa grabado con logo Hello Kitty. Desenreda el cabello sin romperlo, ideal para cabello largo y suave.</p>
+<button class="botonComprar" onclick="comprar('Cepillo peinador Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Loción hidratante para cabello Julikitty</h3>
+<p class="precio">$29.100 COP</p>
+<p class="descripcion">Botella rosa con moño Hello Kitty. Vitamina F, repara puntas secas, elimina frizz y deja el cabello brillante y manejable.</p>
+<button class="botonComprar" onclick="comprar('Loción hidratante para cabello Julikitty')">🛒 Comprar Ahora</button>
+</div>
+<div class="tarjeta">
+<h3>Serum para puntas Julikitty</h3>
+<p class="precio">$38.700 COP</p>
+<p class="descripcion">Frasco Hello Kitty. Vitamina E, repara puntas abiertas, reduce quiebre y le da un brillo natural al cabello.</p>
+<button class="botonComprar" onclick="comprar('Serum para puntas Julikitty')">🛒 Comprar Ahora</button>
+</div>
+</div>
+</section>
+
+<!-- SECCIÓN 5 ⭐ RESEÑAS DE CLIENTES ✅ MANTENIDA -->
+<section id="resenas">
+<h2>⭐ Reseñas de Clientes Julikitty</h2>
+<div class="contenedorResenas">
+<div class="tarjetaResena">
+<div class="estrellas">⭐⭐⭐⭐⭐</div>
+<div class="nombreResena">Valentina Pérez</div>
+<div class="textoResena">¡Me encantó la base Julikitty! Queda hermosa en la piel y el envase tan tierno con Hello Kitty 🥰</div>
+</div>
+<div class="tarjetaResena">
+<div class="estrellas">⭐⭐⭐⭐⭐</div>
+<div class="nombreResena">Sofía Gómez</div>
+<div class="textoResena">Las uñas postizas son preciosísimas, tienen moños y se pegan súper fácil, ¡recomendadísimas!</div>
+</div>
+<div class="tarjetaResena">
+<div class="estrellas">⭐⭐⭐⭐⭐</div>
+<div class="nombreResena">Camila Ruiz</div>
+<div class="textoResena">El serum para el cabello deja mi cabello brillante todo el día, la vitamina E hace maravillas ✨</div>
+</div>
+<div class="tarjetaResena">
+<div class="estrellas">⭐⭐⭐⭐⭐</div>
+<div class="nombreResena">María López</div>
+<div class="textoResena">El labial rosa es mi favorito, no seca mis labios y el diseño de Hello Kitty es hermoso 🎀</div>
+</div>
+</div>
+</section>
+
+<footer>
+🎀 Julikitty – Todos los envases tienen el logo Julikitty + Hello Kitty | Proyecto de Tecnología 🥰<br>
+© 2026 Julikitty
+</footer>
 </body>
-</html>
+  </html>
+  
